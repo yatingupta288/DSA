@@ -1,0 +1,62 @@
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    static long inversionCount(long arr[], long N)
+    {
+        // Your Code Here
+        long lo = 0;
+        long hi = N - 1;
+        long count = 0;
+        count += mergeSort(arr, lo, hi);
+        return count;
+    }
+    
+    static long mergeSorted(long arr[], long lo, long hi, long mid){
+        long count = 0;
+        
+        long n1 = (mid - lo) + 1;
+        long n2 = hi - mid;
+        long a[] = new long[(int)n1];
+        long b[] = new long[(int)n2];
+        for(long i = 0;i < n1; i ++){
+            a[(int)i] = arr[(int)(lo + i)];
+        }
+        for(long i = 0;i < n2; i ++){
+            b[(int)i] = arr[(int)(mid + 1 + i)];
+        }    
+        
+        long i = 0; 
+        long j = 0;
+        long k = lo;
+        while(i < n1 && j < n2){
+            if(a[(int)i] <= b[(int)j]){
+                arr[(int)(k++)] = a[(int)(i++)];
+            }else{
+                arr[(int)(k++)] = b[(int)(j++)];
+                count += n1 - i;
+            }
+        }
+        while(i < n1){
+            arr[(int)k++] = a[(int)i++];
+        }
+        while(j < n2){
+            arr[(int)k++] = b[(int)j++];
+        }
+        
+        return count;
+    }
+    
+    static long mergeSort(long arr[], long lo, long hi){
+        long count = 0;
+        if(lo < hi){
+            long mid = (lo + hi) / 2;
+            count += mergeSort(arr, lo, mid); 
+            count += mergeSort(arr, mid + 1, hi);
+            count += mergeSorted(arr, lo ,hi, mid);
+            
+        }
+        return count;
+    }
+}
