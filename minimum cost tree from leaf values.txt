@@ -1,0 +1,38 @@
+class Solution {
+    public int mctFromLeafValues(int[] a) {
+        int n=a.length;
+        return fun(a,0,n-1,new pair[n][n]).sum;
+    }
+    public pair fun(int a[],int l,int r,pair dp[][]){
+        if(l>r){
+            return new pair(0,1000000);
+        }
+        if(l==r){
+            return new pair(a[l],0);
+        }
+        if(dp[l][r]!=null){
+            return dp[l][r];
+        }
+        pair ans=new pair(0,1000000);
+        for(int i=l;i<r;i++){
+            pair p_left=fun(a,l,i,dp);
+            pair p_right=fun(a,i+1,r,dp);
+            int total=(p_left.sum)+(p_right.sum)+(p_left.max*p_right.max);
+            if(total<ans.sum){
+                ans.max=Math.max(p_left.max,p_right.max);
+                ans.sum=total;
+            }
+        }
+        dp[l][r]=new pair(ans.max,ans.sum);
+        return ans;
+        // Integer.MAX_VALUE+1<
+    }
+    class pair{
+        int max;
+        int sum;
+        pair(int max,int sum){
+            this.max=max;
+            this.sum=sum;
+        }
+    }
+}
