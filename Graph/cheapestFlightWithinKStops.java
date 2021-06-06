@@ -68,3 +68,46 @@ class Solution {
         }
     }
 }
+
+// class Solution {
+//     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+//         int[][] adjMatrix = new int[n][n];
+//         int[] visited = new int[n];
+     
+//         for (int i = 0; i<flights.length; i++) {
+//             int s = flights[i][0];
+//             int e = flights[i][1];
+//             int p = flights[i][2];
+//             adjMatrix[s][e] = p;
+//         }
+        
+//         Queue<int[]> queue = new LinkedList<>();
+//         queue.add(new int[]{src, 0});
+        
+//         int min = Integer.MAX_VALUE;
+//         K++;
+//         while (!queue.isEmpty() && K >= 0) {
+//             int size = queue.size();
+//             for (int i = 0; i<size; i++) {
+//                 int[] pair = queue.poll();
+//                 int s = pair[0];
+//                 int p = pair[1];
+//                 if (s == dst) {
+//                     min = Math.min(p, min);
+//                 }
+                
+//                 for (int j = 0; j<adjMatrix[0].length; j++) {
+//                     if (adjMatrix[s][j] != 0) {
+//                         if (visited[j] == 0 || visited[j] > p + adjMatrix[s][j]) {
+//                             visited[j] = p + adjMatrix[s][j];
+//                             queue.add(new int[]{j, p + adjMatrix[s][j]});    
+//                         }
+                        
+//                     }
+//                 }
+//             }
+//             K--;
+//         }
+//         return min == Integer.MAX_VALUE? -1: min;
+//     }
+// }
