@@ -1,5 +1,5 @@
 class Solution {
-    public String minRemoveToMakeValid(String s) {
+    public String minRemoveToMakeValid(String s){
         int open = 0;
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < s.length(); i++){
