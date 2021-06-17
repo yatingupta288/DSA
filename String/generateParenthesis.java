@@ -9,7 +9,7 @@ class Solution {
         return list;
     }
     
-    public void helper(int n1, int n2, String str, List<String> list){
+     public void helper(int n1, int n2, String str, List<String> list){
         if(n1 == 0 && n2 == 0 ){
             list.add(str);
             return;
