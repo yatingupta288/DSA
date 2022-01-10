@@ -15,7 +15,7 @@ class Solution {
                 carry = 0;
             }
             s.append(sum%2);
-            System.out.print(sum + " ");
+            // System.out.print(sum + " ");
         }
         if(carry!= 0)s.append(carry);
         return s.reverse().toString();
