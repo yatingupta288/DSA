@@ -15,36 +15,15 @@
  */
 class Solution {
     public TreeNode increasingBST(TreeNode root) {
-        if(root == null){
-            return null;
-        }
-        
-        ArrayList<TreeNode> list = new ArrayList<>();
-        helper(root, list);
-        TreeNode prev = new TreeNode();
-        prev = null;
-        TreeNode root1 = new TreeNode();
-        for(int i = 0; i < list.size(); i++){
-            TreeNode node = new TreeNode(list.get(i).val);
-            if(i == 0){
-                root1 = node;
-            }
-            if(i != 0){
-                prev.left = null;
-                prev.right = node;
-            }
-            
-            prev = node;
-        }
-        return root1;
+        return increasingBST(root, null);
     }
-    
-    public void helper(TreeNode root, ArrayList<TreeNode> list){
-        if(root != null){
-        helper(root.left, list);
-        list.add(root);
-        helper(root.right, list);
-        
-        }
+
+    public TreeNode increasingBST(TreeNode root, TreeNode tail) {
+        if (root == null) return tail;
+        TreeNode res = increasingBST(root.left, root);
+        root.left = null;
+        root.right = increasingBST(root.right, tail);
+        // System.out.print(res.val + " ");
+        return res;
     }
 }
