@@ -27,7 +27,6 @@ class Solution {
                 return pos == true ? Integer.MAX_VALUE: Integer.MIN_VALUE;
             }
             num = num * 10 + s.charAt(i++) - '0';
-            System.out.print(num + " ");
         }
         if(!pos) num = num * -1;
         return num;
