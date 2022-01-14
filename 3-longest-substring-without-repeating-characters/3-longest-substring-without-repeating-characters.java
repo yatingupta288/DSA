@@ -1,19 +1,15 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int i = 0;
-        int j = 0;
-        int freq[] = new int[95];
-        int count = 0;
-        int ans = Integer.MIN_VALUE;
-        while(j < s.length()){
-            while(j < s.length() && freq[s.charAt(j) - ' '] < 1){
-                freq[s.charAt(j++) - ' ']++;
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max=0;
+        for (int i=0, j=0; i<s.length(); ++i){
+            if (map.containsKey(s.charAt(i))){
+                j = Math.max(j,map.get(s.charAt(i))+1);
             }
-            ans = Math.max(ans, j - i);
-            i++;
-            j = i;
-            freq = new int[95];
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-j+1);
         }
-        return ans == Integer.MIN_VALUE ? 0 : ans;
+        return max;
     }
 }
