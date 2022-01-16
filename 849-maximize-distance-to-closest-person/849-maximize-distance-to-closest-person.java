@@ -25,7 +25,7 @@ class Solution {
                         break;
                     }
                 }
-                System.out.print(count1 + " " + count2 + "*");
+                // System.out.print(count1 + " " + count2 + "*");
                 res = Math.max(res, Math.min(count1, count2));
                 count1 = 0;
                 count2 = 0;
