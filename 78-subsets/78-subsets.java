@@ -11,7 +11,7 @@ class Solution {
         if(j == nums.length)return;
         for(int i = j; i < nums.length; i++){
             res.add(nums[i]);
-            System.out.print(res);
+            //System.out.print(res);
             helper(list, res, i + 1, nums);
             res.remove(res.size() - 1);
         }
