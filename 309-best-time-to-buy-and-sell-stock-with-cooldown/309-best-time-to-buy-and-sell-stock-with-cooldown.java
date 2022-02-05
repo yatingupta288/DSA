@@ -6,9 +6,9 @@ class Solution {
         int prevbuy = 0;
         for(int i = 1; i < prices.length; i++){
             prevbuy = buy;
-            buy = Math.max(prevbuy, prevsell - prices[i]);
+            buy = Math.max(buy, prevsell - prices[i]);
             prevsell = sell;
-            sell = Math.max(prevsell, prevbuy + prices[i]);
+            sell = Math.max(sell, prevbuy + prices[i]);
         }
         
         return sell;
