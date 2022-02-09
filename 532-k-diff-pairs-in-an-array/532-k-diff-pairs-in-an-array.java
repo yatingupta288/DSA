@@ -10,7 +10,6 @@ class Solution {
             if(k == 0){
                 if(map.get(i) >= 2){
                     count++;
-                    System.out.print(count + " ");
                 }
             }else{
                 if(map.containsKey(i + k)){
