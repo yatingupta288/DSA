@@ -10,25 +10,23 @@
 public class Codec {
 
     // Encodes a tree to a single string.
-    public void serHelper(TreeNode root, StringBuilder s){
-        if(root == null){
-            s.append("n ");
-            return;
-        }
-        
-        s.append(root.val + " ");
-        serHelper(root.left, s);
-        serHelper(root.right, s);
-    }
+    String s = "";
     public String serialize(TreeNode root) {
-        StringBuilder s = new StringBuilder();
-        serHelper(root, s);
-        return s.toString();
+        if(root == null){
+            s += "n ";
+            return s;
+        }
+    
+        s += root.val + " ";
+        serialize(root.left);
+        serialize(root.right);
+        
+        return s;
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        System.out.print(data);
+        // System.out.print(data);
         String s[] = data.split(" ");
         int idx[] = new int[1];
         TreeNode root = deser(s, idx);
