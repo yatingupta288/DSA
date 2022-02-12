@@ -1,31 +1,26 @@
 class Solution {
-    private Integer[][] dp;
     public int change(int amount, int[] coins) {
-        if (amount == 0)
-            return 1;
-        if (coins.length == 0)
-            return 0;
-        dp = new Integer[coins.length][amount + 1];
-        return changeFrom(amount, coins, 0);
+        if(amount == 0)return 1;
+        if(coins.length == 0)return 0;
+        Integer dp[][] = new Integer[amount + 1][coins.length + 1];
+        return dphelper(dp, amount, 0, coins);
     }
     
-    private int changeFrom(int amount, int[] coins, int currentIndex) {
-        if (amount == 0)
-          return 1;
-
-        if (amount < 0 || currentIndex == coins.length)
-          return 0;
-
-        if (dp[currentIndex][amount] != null)
-            return dp[currentIndex][amount];
+    public int dphelper(Integer[][] dp, int amount, int n, int coins[]){
+        if(amount == 0){
+            return 1;
+        }
         
-        // Recursive call after selecting the coin at the currentIndex
-        int sum1 = changeFrom(amount - coins[currentIndex], coins, currentIndex);
-
-        // Recursive call after excluding the coin at the currentIndex
-        int sum2 = changeFrom(amount, coins, currentIndex + 1);
-
-        dp[currentIndex][amount] = sum1 + sum2;
-        return dp[currentIndex][amount];
+        if(amount < 0 || n == coins.length){
+            return 0;
+        }
+        
+        if(dp[amount][n] != null){
+            return dp[amount][n];
+        }
+        int sum1 = dphelper(dp, amount - coins[n], n, coins);
+        int sum2 = dphelper(dp, amount, n + 1, coins);
+        
+        return dp[amount][n] = sum1 + sum2;
     }
 }
