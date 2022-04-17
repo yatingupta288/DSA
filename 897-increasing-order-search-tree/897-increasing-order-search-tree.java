@@ -15,15 +15,18 @@
  */
 class Solution {
     public TreeNode increasingBST(TreeNode root) {
-        return increasingBST(root, null);
+        return BSTHelper(root, null);
     }
-
-    public TreeNode increasingBST(TreeNode root, TreeNode tail) {
-        if (root == null) return tail;
-        TreeNode res = increasingBST(root.left, root);
+    
+    public TreeNode BSTHelper(TreeNode root, TreeNode prev){
+        if(root == null){
+            return prev;
+        }
+        
+        TreeNode newRoot = BSTHelper(root.left, root);
         root.left = null;
-        root.right = increasingBST(root.right, tail);
-        // System.out.print(res.val + " ");
-        return res;
+        root.right = BSTHelper(root.right, prev);
+        
+        return newRoot;
     }
 }
