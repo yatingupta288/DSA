@@ -22,7 +22,7 @@ class Solution {
             node.next = pairNode.next;
             pairNode.next = pre.next;
             pre.next = pairNode;
-            pairNode = node.next;
+            // pairNode = node.next;
             pre = node;
         }
         return dummy.next;
