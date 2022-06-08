@@ -29,8 +29,8 @@ class Solution {
             List<TreeNode> leftSubtree = makingNodes(start,  root - 1);
             List<TreeNode> rightSubtree = makingNodes(root + 1, end);
             
-            for(TreeNode leftroot : leftSubtree){
-                for(TreeNode rightroot : rightSubtree){
+            for(TreeNode rightroot : rightSubtree){
+                for(TreeNode leftroot : leftSubtree){
                     TreeNode node = new TreeNode(root);
                     node.left = leftroot;
                     node.right = rightroot;
