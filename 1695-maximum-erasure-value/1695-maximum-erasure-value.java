@@ -1,21 +1,21 @@
 class Solution {
-    // sliding window
     public int maximumUniqueSubarray(int[] nums) {
-        int l = 0;
-        int max = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int r = 0; r < nums.length; r++){
-            if(map.containsKey(nums[r])){
-                l = Math.max(l, map.get(nums[r]) + 1);
+        int i = 0; 
+        int j = 0;
+        int sum = 0;
+        int ans = 0;
+        Set<Integer> set = new HashSet<>();
+        while(j < nums.length){
+            if(!set.contains(nums[j])){
+                set.add(nums[j]);
+                sum += nums[j++];
+                ans = Math.max(ans, sum);
+            }else{
+                sum -= nums[i];
+                set.remove(nums[i++]);
             }
-            map.put(nums[r], r);
-            int sum = 0;
-            for(int j = l; j <=r; j++){
-                sum += nums[j];
-            }
-            max = Math.max(max, sum);
         }
         
-        return max;
+        return ans;
     }
 }
