@@ -15,7 +15,7 @@ class Solution {
             }
         }
         int common = dp[n][m];
-        System.out.print(common + " ");
+        // System.out.print(common + " ");
         int ans = word1.length() - common + word2.length() - common;
         return ans;
     }
