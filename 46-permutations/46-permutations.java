@@ -1,22 +1,24 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> list = new ArrayList<>();
-        List<Integer> slist = new ArrayList<>();
-        solve(list, slist, nums);
-        return list;
+        List<List<Integer>> res = new ArrayList<>(); 
+        boolean[] seen = new boolean[nums.length];
+        helper(0,nums, res, new ArrayList<>(),seen);
+        return res;
     }
     
-    public void solve(List<List<Integer>> list, List<Integer> slist, int[] nums){
-        if(slist.size() == nums.length){
-            list.add(new ArrayList<>(slist));
+    public void helper(int idx, int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] seen){
+        if(idx == nums.length){
+            res.add(new ArrayList<>(list));
             return;
         }
         
         for(int i = 0; i < nums.length; i++){
-            if(slist.contains(nums[i]))continue;
-            slist.add(nums[i]);
-            solve(list, slist, nums);
-            slist.remove(slist.size() - 1);
+            if(seen[i])continue;
+            seen[i] = true;
+            list.add(nums[i]);
+            helper(idx + 1, nums, res, list, seen);
+            list.remove(list.size() - 1);
+            seen[i] = false;
         }
     }
 }
